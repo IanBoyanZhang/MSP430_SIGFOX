@@ -160,81 +160,88 @@ dynamic_memory_init ( void )
 	memory_block_init(NUMBER_BLOCKS_8BYTES, BYTES_SIZE_8,  (u8*)(DynamicMemoryTable + START_MEMORY_BLOCK_8BYTES) , Table_8bytes );
 }
 
-/******************************************************************************
- * TX transmission setup
- * To general slave address
- */
+///******************************************************************************
+// * Global Var for I2C
+// */
+//int i, j, k;
+//unsigned char TXByteCtr, RX = 0;
+//
+///******************************************************************************
+// * TX transmission setup
+// * To general slave address
+// */
 //void Setup_TX(unsigned char slAddress){
 //    UCB0I2CSA = slAddress;              // Slave Address
 //    RX = 0;                             // TX
 //    UCB0CTL1 |= UCTR;                   // Put in TX mode
-//    IE2 &= ~UCB0RXIE;                   // Disable RX interrupt
-//    IE2 |= UCB0TXIE;                    // Enable TX interrupt
+////    IE2 &= ~UCB0RXIE;                   // Disable RX interrupt 				// Look up UCAxIE Register
+////    UCRXIE =
+////    IE2 |= UCB0TXIE;                    // Enable TX interrupt
 //}
-
-///******************************************************************************
-// * RX transmission setup
-// * to general slave address
-// */
-//void Setup_RX(unsigned char slAddress){
-//    UCB0I2CSA = slAddress;                    // Slave Address
-//    RX = 1;
-//    UCB0CTL1 &= ~UCTR;                          // Put in RX mode
 //
-//  IE2 &= ~UCB0TXIE;
-//  IE2 |= UCB0RXIE;                          // Enable RX interrupt
-//}
-
-/******************************************************************************
- * Write a byte
- * To L3G4200D Register
- */
-
-void TX_Reg_Byte(unsigned char slAddress, unsigned char reg, unsigned char data)
-{
+/////******************************************************************************
+//// * RX transmission setup
+//// * to general slave address
+//// */
+////void Setup_RX(unsigned char slAddress){
+////    UCB0I2CSA = slAddress;                    // Slave Address
+////    RX = 1;
+////    UCB0CTL1 &= ~UCTR;                          // Put in RX mode
+////
+////  IE2 &= ~UCB0TXIE;
+////  IE2 |= UCB0RXIE;                          // Enable RX interrupt
+////}
+//
+///******************************************************************************
+// * Write a byte
+// * To L3G4200D Register
+// */
+//
+//void TX_Reg_Byte(unsigned char slAddress, unsigned char reg, unsigned char data)
+//{
 //    Setup_TX(slAddress);
-    UCB0CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
-//    while (!(IFG2 & UCB0TXIFG));            // Flag set when buffer is ready 		// IFG is for UART Do we need UART
-    while (!(UCTXIFG));				   // UCBXTXIFG is set when UCBxTXBUF ready
-    UCB0TXBUF = reg;                        // Send data
-//    while (!(IFG2 & UCB0TXIFG));            // Flag set when buffer is ready
-    while (!(UCTXIFG));            // Flag set when buffer is ready
-    UCB0TXBUF = data;
-//    while (!(IFG2 & UCB0TXIFG));            // Flag set when buffer is ready
-    while (!(UCTXIFG));
-    UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
-    while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
-}
-
-/******************************************************************************
- * Reset
- */
-void I2C_Reset() {
-	P3DIR |= BIT2;
-	P3OUT &= ~BIT2;				// bus off
-	uint8_t i;
-	for(i = 0; i!= -1; i++) {}	// Wait for a second
-
-	P3OUT |= BIT2;				// Power bus on
-
-	for(i = 0; i!= -1; i++) {}	// Wait for a second (so that it can get ready)
-}
-
-/******************************************************************************
- * Initialilzation
- */
-void I2C_Init() {
-	P3SEL |= BIT0 + BIT1;
-	UCB0CTL1 |= UCSWRST; 		// Enable SW reset
-	I2C_Reset();
-
-    UCB0CTL0 = UCMST + UCMODE_3 + UCSYNC;     // I2C Master, synchronous mode
-    UCB0CTL1 = UCSSEL_2 + UCSWRST;            // Use SMCLK, keep SW reset
-    UCB0BR0 = 12;                             // fSCL = SMCLK/12 = ~100kHz
-//  UCB0BR0 = 3;                             // fSCL = SMCLK/3 = ~400kHz Fast mode
-    UCB0BR1 = 0;
-    UCB0CTL1 &= ~UCSWRST;                     // Clear SW reset, resume operation
-}
+//    UCB0CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
+////    while (!(IFG2 & UCB0TXIFG));            // Flag set when buffer is ready 		// IFG is for UART Do we need UART
+//    while (!(UCTXIFG));				   // UCBXTXIFG is set when UCBxTXBUF ready
+//    UCB0TXBUF = reg;                        // Send data
+////    while (!(IFG2 & UCB0TXIFG));            // Flag set when buffer is ready
+//    while (!(UCTXIFG));            // Flag set when buffer is ready
+//    UCB0TXBUF = data;
+////    while (!(IFG2 & UCB0TXIFG));            // Flag set when buffer is ready
+//    while (!(UCTXIFG));
+//    UCB0CTL1 |= UCTXSTP;                    // I2C stop condition
+//    while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
+//}
+//
+///******************************************************************************
+// * Reset
+// */
+//void I2C_Reset() {
+//	P3DIR |= BIT2;
+//	P3OUT &= ~BIT2;				// bus off
+//
+//	for(i = 0; i!= -1; i++) {}	// Wait for a second
+//
+//	P3OUT |= BIT2;				// Power bus on
+//
+//	for(i = 0; i!= -1; i++) {}	// Wait for a second (so that it can get ready)
+//}
+//
+///******************************************************************************
+// * Initialilzation
+// */
+//void I2C_Init() {
+//	P3SEL |= BIT0 + BIT1;
+//	UCB0CTL1 |= UCSWRST; 		// Enable SW reset
+//	I2C_Reset();
+//
+//    UCB0CTL0 = UCMST + UCMODE_3 + UCSYNC;     // I2C Master, synchronous mode
+//    UCB0CTL1 = UCSSEL_2 + UCSWRST;            // Use SMCLK, keep SW reset
+//    UCB0BR0 = 12;                             // fSCL = SMCLK/12 = ~100kHz
+////  UCB0BR0 = 3;                             // fSCL = SMCLK/3 = ~400kHz Fast mode
+//    UCB0BR1 = 0;
+//    UCB0CTL1 &= ~UCSWRST;                     // Clear SW reset, resume operation
+//}
 
 
 /***************************************************************************//**

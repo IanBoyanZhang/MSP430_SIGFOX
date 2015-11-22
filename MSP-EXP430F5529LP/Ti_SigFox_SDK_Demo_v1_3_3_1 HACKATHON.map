@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker Unix v4.4.4                    
 ******************************************************************************
->> Linked Sun Nov 22 01:59:55 2015
+>> Linked Sun Nov 22 02:09:41 2015
 
 OUTPUT FILE NAME:   <Ti_SigFox_SDK_Demo_v1_3_3_1 HACKATHON.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 00004540
