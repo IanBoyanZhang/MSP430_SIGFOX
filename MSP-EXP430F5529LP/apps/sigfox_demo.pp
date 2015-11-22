@@ -79,6 +79,7 @@ apps/sigfox_demo.obj: ../apps/sigfox_demo.h
 apps/sigfox_demo.obj: /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/components/bsp/bsp_led.h
 apps/sigfox_demo.obj: /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/components/bsp/bsp_key.h
 apps/sigfox_demo.obj: /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/components/hostcmd/uart_drv.h
+apps/sigfox_demo.obj: /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/i2c/i2c.h
 
 ../apps/sigfox_demo.c: 
 /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/driverlib/MSP430F5xx_6xx/driverlib.h: 
@@ -159,3 +160,4 @@ apps/sigfox_demo.obj: /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_
 /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/components/bsp/bsp_led.h: 
 /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/components/bsp/bsp_key.h: 
 /Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/components/hostcmd/uart_drv.h: 
+/Users/ianzhang/eclipse/workspace/Ti_SigFox_SDK_Demo_v1_3_3_1\ HACKATHON/i2c/i2c.h: 
